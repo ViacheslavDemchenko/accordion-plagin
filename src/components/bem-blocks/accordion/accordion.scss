@@ -1,0 +1,54 @@
+.accordion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  cursor: pointer;
+}
+
+.accordion div {
+  width: 300px;
+  border-radius: 5px;
+  background: #AFEEEE;
+}
+
+.accordion h3 {
+  position: relative;
+  padding: 10px 15px;
+  margin: 0;
+}
+
+.accordion h3::after {
+  position: absolute;
+  content: "";
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  width: 20px;
+  height: 10px;
+  background: url(../img/icons/arrow.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  will-change: transform;
+  transition: transform .5s linear;
+}
+
+.accordion div.active h3::after {
+  transform: translateY(-50%) rotate(270deg) !important;
+}
+
+.accordion p {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin: 0;
+  padding: 0 15px;
+  will-change: auto;
+  transition: all .5s ease-out;
+}
+
+.accordion p.active {
+  opacity: 1;
+  padding: 10px 15px 20px 15px;
+}

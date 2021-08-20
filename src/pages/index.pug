@@ -1,0 +1,10 @@
+extends ./../layouts/main
+
+block variables
+    - let pageTitle = 'Название проекта';
+
+block content
+    .wrap-feedback
+    .wrapper
+        .container 
+            include ./../components/bem-blocks/accordion/accordion.pug
