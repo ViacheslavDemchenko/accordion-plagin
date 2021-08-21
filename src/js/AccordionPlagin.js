@@ -9,7 +9,7 @@
  *
  * Released on: August, 2021
  */
-class AccordionPlagin {
+ class AccordionPlagin {
     constructor(accordionClass, accordItems, accordItemsContent, activeContentClass, activeTitleClass, options = {}) {
         this.accordion = accordionClass;
         this.accordItems = accordItems;
@@ -100,9 +100,9 @@ class AccordionPlagin {
     _accordItemsSingleHandler(content, item) {
         item.addEventListener('click', () => {
             if (content.classList.contains(this.activeContentClass)) {
-                this._hideText(content);
+                this._hideText(content, item);
             } else {
-                this._showText(content);
+                this._showText(content, item);
             }
         });
     }
@@ -136,7 +136,7 @@ class AccordionPlagin {
                     if(typeof this.options.initialActiveItemIndex === 'number') {
                         // Установка высоты указанного блока и присвоение ему активного класса
                         accordContents[this.options.initialActiveItemIndex].classList.add(this.activeContentClass);
-                        accordContents[this.options.initialActiveItemIndex].style.height = `${accordContents[0].scrollHeight + this._accordItemsHeight(this.options.itemPaddingTop, this.options.itemPaddingBottom)}px`;
+                        accordContents[this.options.initialActiveItemIndex].style.height = `${accordContents[this.options.initialActiveItemIndex].scrollHeight}px`;
                         // Присвоение активного класса активному блоку
                         accordBlocks[this.options.initialActiveItemIndex].classList.add(this.activeTitleClass);
                     }
@@ -146,18 +146,18 @@ class AccordionPlagin {
                         // Установка высоты указанных блоков и присвоение им активного класса через цикл
                         for(let i = 0; i < this.options.initialActiveItemIndex.length; i++) {
                             accordContents[this.options.initialActiveItemIndex[i]].classList.add(this.activeContentClass);
-                            accordContents[this.options.initialActiveItemIndex[i]].style.height = `${accordContents[0].scrollHeight + this._accordItemsHeight(this.options.itemPaddingTop, this.options.itemPaddingBottom)}px`;
+                            accordContents[this.options.initialActiveItemIndex[i]].style.height = `${accordContents[this.options.initialActiveItemIndex[i]].scrollHeight}px`;
                             // Присвоение активного класса активным блокам
                             accordBlocks[this.options.initialActiveItemIndex[i]].classList.add(this.activeTitleClass);
                         }
                     }
                 } else {
                     /**
-                    * Установка активным первоого блока по умолчанию, если не указано иное
+                    * Установка активным первого блока по умолчанию, если не указано иное
                     */
                     accordContents[0].classList.add(this.activeContentClass);
                     accordBlocks[0].classList.add(this.activeTitleClass);
-                    accordContents[0].style.height = `${accordContents[0].scrollHeight + this._accordItemsHeight(this.options.itemPaddingTop, this.options.itemPaddingBottom)}px`;
+                    accordContents[0].style.height = `${accordContents[0].scrollHeight}px`;
                 }
 
                 /**
